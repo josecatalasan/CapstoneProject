@@ -9,4 +9,5 @@ interface OverwatchApiService {
 
     @GET (OwlApi_Constants.PATH_PLAYER_STATS)
     fun getPlayerStats() : Observable<PlayerStatsResponse>
+
 }

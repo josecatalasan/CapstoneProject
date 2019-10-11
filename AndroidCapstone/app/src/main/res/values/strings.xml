@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AndroidCapstone</string>
+    <string name="facebook_app_id">499584537506888</string>
+    <string name="fb_login_protocol_scheme">fb499584537506888</string>
+    <string name="user_email_hint">Email Address</string>
+    <string name="user_password_hint">Password</string>
+    <string name="log_in_button_text">LOG IN</string>
+    <string name="or_log_in_with">OR LOG IN WITH</string>
+    <string name="overwatch_league_logo_description">Overwatch League Logo</string>
+    <string name="create_account_button">CREATE ACCOUNT</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="display_name_hint">Display Name</string>
 </resources>

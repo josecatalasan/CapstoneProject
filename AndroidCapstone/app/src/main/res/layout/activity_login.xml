@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activities.LoginActivity">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.androidcapstone.viewmodel.LoginViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_owl_small"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="@string/overwatch_league_logo_description" />
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/etUserEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/user_email_hint"
+            android:textAlignment="center"
+            android:inputType="textEmailAddress"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.userEmailText}"/>
+
+        <EditText
+            android:id="@+id/etUserPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/user_password_hint"
+            android:textAlignment="center"
+            android:inputType="textPassword"
+            android:importantForAutofill="no"
+            android:text="@={viewModel.userPasswordText}"/>
+
+        <EditText
+            android:id="@+id/etUserPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/confirm_password_hint"
+            android:textAlignment="center"
+            android:inputType="textPassword"
+            android:importantForAutofill="no"
+            android:visibility="gone"
+            android:text="@={viewModel.userPasswordConfirmText}"/>
+
+        <EditText
+            android:id="@+id/etUserDisplayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/display_name_hint"
+            android:textAlignment="center"
+            android:inputType="text"
+            android:importantForAutofill="no"
+            android:visibility="gone"
+            android:text="@={viewModel.userDisplayNameText}"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/log_in_button_text"
+            android:textSize="16sp"
+            android:onClick="@{(v) -> viewModel.onLoginClicked(v)}"/>
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/create_account_button"
+            android:textSize="16sp"
+            android:onClick="@{(v) -> viewModel.onLoginClicked(v)}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="@string/or_log_in_with"
+            android:layout_margin="8dp"/>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/btnGuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_gravity="bottom"
+            android:text="Continue as Guest"
+            android:textSize="16sp"
+            android:onClick="@{(v) -> viewModel.onLoginClicked(v)}"/>
+
+    </LinearLayout>
+
+</layout>

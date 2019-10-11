@@ -11,5 +11,6 @@ class OwlApi_Constants {
         const val PATH_PLAYERS = "players" // /{id} for specific player
         const val PATH_MAPS = "maps"
         const val PATH_NEWS = "/news" // /{id} for specific
+        const val LOGIN = "/login"
     }
 }
