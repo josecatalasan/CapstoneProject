@@ -1,19 +1,21 @@
 package com.example.androidcapstone.view.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import com.example.androidcapstone.R
-import com.example.androidcapstone.model.datasource.remote.network.retrofit.RetrofitHelper
 import com.example.androidcapstone.model.responseclasses.playerstats.PlayerStats
-import com.example.androidcapstone.model.responseclasses.playerstats.PlayerStatsResponse
+import com.example.androidcapstone.view.fragments.NewsFragment
+import com.example.androidcapstone.view.fragments.PlayersFragment
+import com.example.androidcapstone.view.fragments.TeamsFragment
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.nav_header.view.*
 
 class HomeActivity : AppCompatActivity() {
     //Toolbar on top with OWL name and logo, sometimes action buttons
@@ -23,9 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     //Navigation menu on the left to choose overall information type
 
-
-    //Login Activity
-    //Home Fragment - news - videos - photos?
+    //News Fragment - news - videos - photos?
     //League Fragment - teams - standings - rankings
     //Players Fragment - players - players stats - hall of fame
     //Tickets
@@ -40,20 +40,13 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        var retrofitHelper = RetrofitHelper()
-        var list = retrofitHelper.getService().getPlayerStats()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(object : Observer<PlayerStatsResponse> {
-                lateinit var playerStatsResponse: PlayerStatsResponse
-                override fun onComplete() {printHighest(playerStatsResponse.data)}
-
-                override fun onSubscribe(d: Disposable) {}
-
-                override fun onNext(t: PlayerStatsResponse) { playerStatsResponse = t}
-
-                override fun onError(e: Throwable) {}
-            })
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, NewsFragment.newInstance()).commit()
+            navView.setCheckedItem(R.id.nav_news)
+            toolbar.title = "News"
+        }
+        setSupportActionBar(toolbar)
+        setupNavView()
     }
 
     override fun onStop() {
@@ -64,7 +57,68 @@ class HomeActivity : AppCompatActivity() {
         super.onStop()
     }
 
+    override fun onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
+    }
+
+    private fun setupNavView(){
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        //set user name in nav header
+        val user = intent.extras!!.getParcelable<FirebaseUser>("user")!!
+        navView.getHeaderView(0).navHeaderName.text = user.displayName
+
+        //setup navigationItemSelectedListener
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.nav_news -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, NewsFragment.newInstance()).commit()
+                    toolbar.title = "News"}
+                R.id.nav_teams -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, TeamsFragment()).commit()
+                    toolbar.title = "Teams"}
+                R.id.nav_players -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, PlayersFragment()).commit()
+                    toolbar.title = "Players"}
+                R.id.nav_tickets -> {}
+                R.id.nav_store -> {}
+                R.id.nav_share -> {}
+                R.id.nav_feedback -> {}
+                R.id.nav_logout -> {
+                    firebaseAuth.signOut()
+                    LoginManager.getInstance().logOut()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+
+    }
+
     fun printHighest(list : List<PlayerStats>?){
+        //        var retrofitHelper = RetrofitHelper()
+//        var list = retrofitHelper.getService().getPlayerStats()
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .subscribe(object : Observer<PlayerStatsResponse> {
+//                lateinit var playerStatsResponse: PlayerStatsResponse
+//                override fun onComplete() {}
+//
+//                override fun onSubscribe(d: Disposable) {}
+//
+//                override fun onNext(t: PlayerStatsResponse) { playerStatsResponse = t}
+//
+//                override fun onError(e: Throwable) {}
+//            })
+
         var player = list!![0]
         var deathCount = player.deathsAvgPer10m
 
@@ -75,7 +129,6 @@ class HomeActivity : AppCompatActivity() {
             }
             Log.d("TAG_PLAYERS", "$it")
         }
-
-        tvTest.text = player.name
+//        tvTest.text = player.name
     }
 }

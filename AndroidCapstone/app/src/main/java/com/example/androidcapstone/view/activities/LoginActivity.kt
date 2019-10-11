@@ -23,14 +23,14 @@ class LoginActivity : AppCompatActivity() {
         binder.lifecycleOwner = this
 
         setupObservers()
-
     }
 
     override fun onStart() {
         // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = loginViewModel.getCurrentUser()
-//        if(currentUser != null)
-//            startActivity(Intent(this, HomeActivity::class.java))
+        val currentUser = loginViewModel.getCurrentUser()
+        if(currentUser != null) {
+            startHomeActivity(currentUser)
+        }
 
         super.onStart()
     }
@@ -40,14 +40,9 @@ class LoginActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun setupObservers(){
+    private fun setupObservers(){
         loginViewModel.user.observe(this, Observer<FirebaseUser> { user ->
-                val bundle = Bundle()
-                bundle.putParcelable("user", user)
-                intent = Intent(applicationContext, HomeActivity::class.java)
-                intent.putExtras(bundle)
-                startActivity(intent)
-                finish()
+                startHomeActivity(user)
             })
 
         loginViewModel.createAccount.observe(this, Observer<Boolean>{
@@ -63,6 +58,15 @@ class LoginActivity : AppCompatActivity() {
             }
             tvErrorMessage.text = it
         })
+    }
+
+    private fun startHomeActivity(user : FirebaseUser){
+        val bundle = Bundle()
+        bundle.putParcelable("user", user)
+        intent = Intent(applicationContext, HomeActivity::class.java)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
     }
 
 }

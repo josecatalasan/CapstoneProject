@@ -3,7 +3,6 @@ package com.example.androidcapstone.model.datasource.authentication
 import android.util.Log
 import com.example.androidcapstone.model.datasource.authentication.user.UserLogin
 import com.facebook.AccessToken
-import com.facebook.login.LoginManager
 import com.google.firebase.auth.*
 import java.lang.Exception
 
@@ -30,7 +29,11 @@ class FirebaseAuthenticationManager(var callback: IFirebaseAuthManager) {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG_FB", "signInWithEmail:failure", task.exception)
-                    callback.onSignInUser(null)
+                    try{
+                        throw task.exception as Throwable
+                    } catch(e : Exception) {
+                        callback.sendError(e.toString().substringAfter(":"))
+                    }
                 }
             }
     }
@@ -47,8 +50,7 @@ class FirebaseAuthenticationManager(var callback: IFirebaseAuthManager) {
                     val user = mAuth.currentUser
                     val profileUpdate = UserProfileChangeRequest.Builder().setDisplayName(displayName).build()
                     user!!.updateProfile(profileUpdate)
-
-                    callback.onSignInUser(user)
+                    signInToFirebaseAccount(userLogin)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG_FB", "createUserWithEmail:failure", task.exception)
@@ -57,7 +59,6 @@ class FirebaseAuthenticationManager(var callback: IFirebaseAuthManager) {
                     } catch(e : Exception) {
                         callback.sendError(e.toString().substringAfter(":"))
                     }
-                    //callback.onSignInUser(null)
                 }
             }
     }
@@ -94,11 +95,6 @@ class FirebaseAuthenticationManager(var callback: IFirebaseAuthManager) {
                 callback.onSignInUser(null)
             }
         }
-    }
-
-    fun signOutOfFirebaseAccount(){
-        mAuth.signOut()
-        LoginManager.getInstance().logOut()
     }
 
     interface IFirebaseAuthManager {

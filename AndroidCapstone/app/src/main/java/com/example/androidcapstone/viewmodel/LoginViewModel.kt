@@ -56,10 +56,16 @@ class LoginViewModel : ViewModel(), FirebaseAuthenticationManager.IFirebaseAuthM
             R.id.btnCreateAccount -> {
                 if(createAccount.value!!){
                     if(userEmailText.value!!.isNotEmpty() && userPasswordText.value!!.isNotEmpty() &&
-                        userPasswordConfirmText.value!!.isNotEmpty() && userDisplayNameText.value!!.isNotEmpty() &&
-                            userPasswordText.value == userPasswordConfirmText.value) {
-                        userLogin = UserLogin(userEmailText.value!!,userPasswordText.value!!)
-                        authManager.createFirebaseAccount(userLogin, userDisplayNameText.value!!)
+                        userPasswordConfirmText.value!!.isNotEmpty() && userDisplayNameText.value!!.isNotEmpty()) {
+                        if(userPasswordText.value == userPasswordConfirmText.value) {
+                            userLogin = UserLogin(userEmailText.value!!, userPasswordText.value!!)
+                            authManager.createFirebaseAccount(
+                                userLogin,
+                                userDisplayNameText.value!!
+                            )
+                        } else {
+                            sendError("Passwords do not match")
+                        }
                     }
                 }
                 else{
@@ -88,7 +94,7 @@ class LoginViewModel : ViewModel(), FirebaseAuthenticationManager.IFirebaseAuthM
         if(user != null)
             this.user.postValue(user)
         else
-            errorMessage.postValue("Failed to sign in.")
+            errorMessage.postValue("Email or Password is incorrect")
     }
 
     override fun sendError(error: String) {
