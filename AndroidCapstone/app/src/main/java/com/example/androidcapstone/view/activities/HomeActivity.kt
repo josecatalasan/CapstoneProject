@@ -82,9 +82,12 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_players -> {
                     supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, PlayersFragment()).addToBackStack("Players").commit()
                     toolbar.title = "Players"}
-                R.id.nav_tickets -> {}
+                R.id.nav_tickets -> {
+                    supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://axs.com")).addToBackStack("Web").commit()
+                    toolbar.title = "Tickets"
+                }
                 R.id.nav_store -> {
-                    supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://shop.overwatchleague.com")).addToBackStack("News").commit()
+                    supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://shop.overwatchleague.com")).addToBackStack("Web").commit()
                     toolbar.title = "Shop"
                 }
                 R.id.nav_share -> {}

@@ -12,7 +12,6 @@ import com.example.androidcapstone.R
 import kotlinx.android.synthetic.main.fragment_web_view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import kotlinx.android.synthetic.main.activity_home.*
 
 private const val url = "url"
 
@@ -37,17 +36,18 @@ class WebViewFragment : Fragment() {
         webView.settings.javaScriptEnabled = true
         webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         webView.loadUrl(url)
-        webView.setOnKeyListener{v, key, event ->
+        webView.setOnKeyListener{_, key, event ->
             if(event.action == KeyEvent.ACTION_DOWN){
                 when(key){
                     KeyEvent.KEYCODE_BACK ->{
                         if(webView.canGoBack()){
                             webView.goBack()
+                            return@setOnKeyListener true
                         }
                     }
                 }
             }
-            true
+            false
         }
 
         super.onViewCreated(view, savedInstanceState)

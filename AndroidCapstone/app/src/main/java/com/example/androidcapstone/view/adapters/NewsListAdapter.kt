@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidcapstone.R
 import com.example.androidcapstone.model.responseclasses.newsposts.BlogsItem
+import com.example.androidcapstone.view.activities.HomeActivity
+import com.example.androidcapstone.view.fragments.WebViewFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_news.view.*
 import java.text.SimpleDateFormat
@@ -26,6 +28,7 @@ class NewsListAdapter(var blogsList : List<BlogsItem?>) : RecyclerView.Adapter<N
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+        var currentItem : BlogsItem? = null
 
         fun bind(blogsItem: BlogsItem?){
             Picasso.get().load("https:"+blogsItem?.thumbnail?.url).into(itemView.ivThumbnail)
@@ -38,10 +41,13 @@ class NewsListAdapter(var blogsList : List<BlogsItem?>) : RecyclerView.Adapter<N
             itemView.tvDate.text = sdf.format(date)
 
             itemView.setOnClickListener(this)
+            currentItem = blogsItem
         }
 
         override fun onClick(view : View?) {
-
+            (view?.context as HomeActivity).supportFragmentManager
+                .beginTransaction().replace(R.id.frame_FragmentContainer, WebViewFragment.newInstance(currentItem!!.defaultUrl!!))
+                .addToBackStack("Web").commit()
         }
 
     }

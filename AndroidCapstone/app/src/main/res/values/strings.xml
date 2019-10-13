@@ -21,5 +21,8 @@
     <string name="nav_item_players">Players</string>
     <string name="nav_item_logout">Log Out</string>
     <string name="nav_header_desc">Overwatch League Logo</string>
+    <string name="nav_purchase">Purchase</string>
+    <string name="nav_item_tickets">Tickets</string>
+    <string name="nav_item_store">Store</string>
 
 </resources>
