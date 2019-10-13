@@ -27,6 +27,7 @@ class TeamsListAdapter(var teamsList : List<DataItem?>) : RecyclerView.Adapter<T
         fun bind(dataItem: DataItem?) {
             Picasso.get().load(dataItem?.logo?.main?.png).into(itemView.ivLogo)
             itemView.tvTeamName.text = dataItem?.name
+            //players, division
         }
     }
 }

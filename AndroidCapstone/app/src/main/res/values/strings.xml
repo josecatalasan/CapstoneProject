@@ -24,5 +24,14 @@
     <string name="nav_purchase">Purchase</string>
     <string name="nav_item_tickets">Tickets</string>
     <string name="nav_item_store">Store</string>
+    <string name="nav_item_schedule">Schedule</string>
+    <string name="nav_item_feedback">Feedback</string>
+    <string name="nav_item_about">About Overwatch League</string>
+    <string name="misc">Misc</string>
+    <string name="feedback_email_hint">Email Address</string>
+    <string name="feedback_body_hint">Describe your feedback</string>
+    <string name="feedback_button_text">SEND FEEDBACK</string>
+    <string name="share_text">SHARE</string>
+    <string name="news_post_thumbnail_description">Thumbnail of news post</string>
 
 </resources>

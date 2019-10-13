@@ -27,6 +27,7 @@ class PlayersListAdapter(var playersList : List<ContentItem?>) : RecyclerView.Ad
         fun bind(contentItem: ContentItem?) {
             Picasso.get().load(contentItem?.headshot).into(itemView.ivHeadshot)
             itemView.tvPlayerName.text = contentItem?.name
+            //attributes.role, attributes.playernumber, givenName + familyName
         }
     }
 }

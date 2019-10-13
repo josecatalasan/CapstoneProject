@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.androidcapstone.R
@@ -31,7 +32,7 @@ class TeamsListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rvTeams.layoutManager = LinearLayoutManager(context)
+        rvTeams.layoutManager = GridLayoutManager(context, 2)
         rvTeams.adapter = adapter
 
         viewModel.teamsList.observe(this, Observer<List<DataItem?>> { t -> adapter.onTeamsListUpdate(t) })

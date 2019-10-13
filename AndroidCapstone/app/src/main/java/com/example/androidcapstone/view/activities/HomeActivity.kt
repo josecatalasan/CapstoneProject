@@ -6,10 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.androidcapstone.R
-import com.example.androidcapstone.view.fragments.NewsFragment
-import com.example.androidcapstone.view.fragments.PlayersFragment
-import com.example.androidcapstone.view.fragments.TeamsFragment
-import com.example.androidcapstone.view.fragments.WebViewFragment
+import com.example.androidcapstone.view.fragments.*
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -20,15 +17,18 @@ class HomeActivity : AppCompatActivity() {
     //Toolbar on top with OWL name and logo, sometimes action buttons
     //Ad banner at the bottom
 
-    //News Fragment - news
     //League Fragment - teams - standings - rankings
     //Players Fragment - players - players stats - hall of fame
 
-    //Tickets
     //Social Media
-    //Merch Store - WebView or Browser Redirect
     //FeedbackFragment - simple form to an RTD
     //Settings - notification preferences, permission settings, privacy policy, version
+    //Content Provider
+    //Broadcast Receiver
+    //Service
+    //RxCache
+    //Tests
+    //Flavors
 
     private val firebaseAuth : FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -38,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
 
         if(savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, NewsFragment.newInstance()).commit()
-            navView.setCheckedItem(R.id.nav_news)
             toolbar.title = "News"
         }
         setSupportActionBar(toolbar)
@@ -82,6 +81,10 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_players -> {
                     supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, PlayersFragment()).addToBackStack("Players").commit()
                     toolbar.title = "Players"}
+                R.id.nav_schedule -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://overwatchleague.com/en-us/schedule")).addToBackStack("Web").commit()
+                    toolbar.title = "Schedule"
+                }
                 R.id.nav_tickets -> {
                     supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://axs.com")).addToBackStack("Web").commit()
                     toolbar.title = "Tickets"
@@ -90,8 +93,14 @@ class HomeActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://shop.overwatchleague.com")).addToBackStack("Web").commit()
                     toolbar.title = "Shop"
                 }
-                R.id.nav_share -> {}
-                R.id.nav_feedback -> {}
+                R.id.nav_feedback -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, FeedbackFragment()).addToBackStack("Feedback").commit()
+                    toolbar.title = "Feedback"
+                }
+                R.id.nav_about -> {
+                    supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://overwatchleague.com/en-us/about")).addToBackStack("Web").commit()
+                    toolbar.title = "About"
+                }
                 R.id.nav_logout -> {
                     firebaseAuth.signOut()
                     LoginManager.getInstance().logOut()

@@ -21,7 +21,7 @@ class TeamsPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAd
     override fun getPageTitle(position: Int): CharSequence? {
         when(position){
             0 -> return "Teams"
-            1 -> return "Standings"
+            1 -> return "Rankings"
         }
         return "NONE" // should never reach here
     }
