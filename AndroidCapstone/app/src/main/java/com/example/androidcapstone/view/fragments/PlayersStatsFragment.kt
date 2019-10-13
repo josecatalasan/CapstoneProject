@@ -35,6 +35,7 @@ class PlayersStatsFragment : Fragment() {
         rvPlayersStats.adapter = adapter
 
         viewModel.playerStatsList.observe(this, Observer<List<PlayerStats?>> { t -> adapter.onListUpdate(t) })
+        viewModel.getPlayerStats(context!!)
 
         super.onViewCreated(view, savedInstanceState)
     }

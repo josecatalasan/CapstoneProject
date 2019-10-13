@@ -34,6 +34,7 @@ class NewsFragment : Fragment() {
         rvNews.adapter = adapter
 
         viewModel.newsList.observe(this, Observer<List<BlogsItem?>> { t -> adapter.onNewsUpdate(t) })
+        viewModel.getNews(context!!)
 
         super.onViewCreated(view, savedInstanceState)
     }

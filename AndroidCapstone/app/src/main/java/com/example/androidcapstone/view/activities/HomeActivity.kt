@@ -27,7 +27,6 @@ class HomeActivity : AppCompatActivity() {
     //League Fragment - teams - rankings
     //Players Fragment - players - players stats - hall of fame
 
-    //FeedbackFragment - simple form to an RTD
     //Settings - notification preferences, permission settings, privacy policy, version
     //Content Provider
     //Broadcast Receiver
@@ -81,6 +80,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupNavView(){
+        //setup toggle button in toolbar
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
             R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerLayout.addDrawerListener(toggle)

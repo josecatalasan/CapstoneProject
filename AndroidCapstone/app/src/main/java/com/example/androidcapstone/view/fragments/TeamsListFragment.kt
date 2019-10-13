@@ -36,6 +36,7 @@ class TeamsListFragment : Fragment() {
         rvTeams.adapter = adapter
 
         viewModel.teamsList.observe(this, Observer<List<DataItem?>> { t -> adapter.onTeamsListUpdate(t) })
+        viewModel.getTeams(context!!)
 
         super.onViewCreated(view, savedInstanceState)
     }
