@@ -102,33 +102,4 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
-
-    fun printHighest(list : List<PlayerStats>?){
-        //        var retrofitHelper = RetrofitHelper()
-//        var list = retrofitHelper.getService().getPlayerStats()
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeOn(Schedulers.io())
-//            .subscribe(object : Observer<PlayerStatsResponse> {
-//                lateinit var playerStatsResponse: PlayerStatsResponse
-//                override fun onComplete() {}
-//
-//                override fun onSubscribe(d: Disposable) {}
-//
-//                override fun onNext(t: PlayerStatsResponse) { playerStatsResponse = t}
-//
-//                override fun onError(e: Throwable) {}
-//            })
-
-        var player = list!![0]
-        var deathCount = player.deathsAvgPer10m
-
-        list?.forEach{
-            if(it.deathsAvgPer10m > deathCount) {
-                player = it
-                deathCount = it.deathsAvgPer10m
-            }
-            Log.d("TAG_PLAYERS", "$it")
-        }
-//        tvTest.text = player.name
-    }
 }

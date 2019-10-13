@@ -26,5 +26,4 @@ class PlayersFragment : Fragment() {
         tabLayout.setupWithViewPager(pager)
     }
 
-
 }

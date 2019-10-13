@@ -17,7 +17,6 @@ import com.example.androidcapstone.view.adapters.NewsListAdapter
 import com.example.androidcapstone.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 
-
 class NewsFragment : Fragment() {
     private lateinit var binder : FragmentNewsBinding
     private val viewModel : NewsViewModel = NewsViewModel()

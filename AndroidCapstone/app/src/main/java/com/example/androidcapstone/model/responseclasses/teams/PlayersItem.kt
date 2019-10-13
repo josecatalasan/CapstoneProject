@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class PlayersItem(
 
 	@field:SerializedName("number")
-	val number: Int? = null,
+	val number: String? = null,
 
 	@field:SerializedName("role")
 	val role: String? = null,

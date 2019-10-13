@@ -30,6 +30,5 @@ class NewsListAdapter(var blogsList : List<BlogsItem?>) : RecyclerView.Adapter<N
             itemView.tvAuthor.text = "by ${blogsItem?.author}"
             itemView.tvSummary.text = blogsItem?.summary
         }
-
     }
 }

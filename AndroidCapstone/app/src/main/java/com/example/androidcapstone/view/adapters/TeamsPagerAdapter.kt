@@ -10,8 +10,8 @@ class TeamsPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAd
 
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> {return  TeamsListFragment()}
-            1 -> {return  TeamsStandingsFragment()}
+            0 -> {return TeamsListFragment()}
+            1 -> {return TeamsStandingsFragment()}
         }
         return Fragment() // should never reach here
     }

@@ -3,28 +3,28 @@ package com.example.androidcapstone.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.androidcapstone.model.datasource.remote.network.retrofit.RetrofitHelper
-import com.example.androidcapstone.model.responseclasses.newsposts.BlogsItem
-import com.example.androidcapstone.model.responseclasses.newsposts.NewsResponse
+import com.example.androidcapstone.model.responseclasses.teams.DataItem
+import com.example.androidcapstone.model.responseclasses.teams.TeamsResponse
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class NewsViewModel : ViewModel() {
+class TeamsListViewModel : ViewModel() {
 
-    val newsList : MutableLiveData<List<BlogsItem?>> = MutableLiveData()
+    val teamsList : MutableLiveData<List<DataItem?>> = MutableLiveData()
 
     init{
-        RetrofitHelper().getService().getNews()
+        RetrofitHelper().getService().getTeams()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object : Observer<NewsResponse>{
-                private lateinit var response : NewsResponse
-                override fun onComplete() {newsList.postValue(response.blogs)}
+            .subscribe(object : Observer<TeamsResponse> {
+                private lateinit var response : TeamsResponse
+                override fun onComplete() {teamsList.postValue(response.data)}
 
                 override fun onSubscribe(d: Disposable) {}
 
-                override fun onNext(t: NewsResponse) {response = t}
+                override fun onNext(t: TeamsResponse) {response = t}
 
                 override fun onError(e: Throwable) {}
             })

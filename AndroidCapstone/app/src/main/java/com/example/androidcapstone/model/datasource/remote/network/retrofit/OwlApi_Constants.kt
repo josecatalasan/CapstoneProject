@@ -13,7 +13,6 @@ class OwlApi_Constants {
         const val PATH_PLAYER_STATS = "stats/players"
         const val PATH_PLAYERS = "players" // /{id} for specific player
 
-        const val PATH_MAPS = "maps"
         const val PATH_STREAM_STATUS = "v2/streams"
     }
 }
