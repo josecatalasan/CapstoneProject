@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Information">
-        <group android:checkableBehavior="single">
-            <menu>
-                <item
-                    android:id="@+id/nav_news"
-                    android:icon="@drawable/ic_home"
-                    android:title="News"/>
-                <item
-                    android:id="@+id/nav_teams"
-                    android:title="Teams"/>
-                <item
-                    android:id="@+id/nav_players"
-                    android:title="Players"/>
-            </menu>
-        </group>
-    </item>
 
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_item_news"/>
+        <item
+            android:id="@+id/nav_teams"
+            android:icon="@drawable/ic_team"
+            android:title="@string/nav_item_teams"/>
+        <item
+            android:id="@+id/nav_players"
+            android:icon="@drawable/ic_players"
+            android:title="@string/nav_item_players"/>
+    </group>
 
     <item android:title="Purchase">
         <menu>
@@ -42,6 +40,7 @@
 
     <item
         android:id="@+id/nav_logout"
-        android:title="Log Out" />
+        android:icon="@drawable/ic_logout"
+        android:title="@string/nav_item_logout" />
 
 </menu>

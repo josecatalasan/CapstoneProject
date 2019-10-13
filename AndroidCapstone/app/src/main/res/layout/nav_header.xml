@@ -8,10 +8,16 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_owl"
-        android:layout_margin="8dp"/>
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxWidth="150dp"
+        android:maxHeight="150dp"
+        android:layout_margin="8dp"
+        android:paddingTop="32dp"
+        android:contentDescription="@string/nav_header_desc" />
 
     <TextView
         android:id="@+id/navHeaderName"
@@ -19,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:textSize="20sp"
-        android:text="PLACEHOLDER NAME"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 
 import com.example.androidcapstone.R
 import com.example.androidcapstone.view.adapters.PlayersPagerAdapter
-import com.example.androidcapstone.view.adapters.TeamsPagerAdapter
 import kotlinx.android.synthetic.main.fragment_teams.*
 
 class PlayersFragment : Fragment() {

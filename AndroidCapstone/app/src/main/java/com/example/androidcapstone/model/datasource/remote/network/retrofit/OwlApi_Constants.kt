@@ -4,7 +4,7 @@ class OwlApi_Constants {
     companion object{
         const val BASE_URL = "https://api.overwatchleague.com/"
 
-        const val PATH_NEWS = "/news" // /{id} for specific
+        const val PATH_NEWS = "/news"
 
         const val PATH_TEAMS = "v2/teams"   // /{id} for specific
         const val PATH_STANDINGS = "v2/standings"

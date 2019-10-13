@@ -3,14 +3,13 @@ package com.example.androidcapstone.view.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.androidcapstone.R
-import com.example.androidcapstone.model.responseclasses.playerstats.PlayerStats
 import com.example.androidcapstone.view.fragments.NewsFragment
 import com.example.androidcapstone.view.fragments.PlayersFragment
 import com.example.androidcapstone.view.fragments.TeamsFragment
+import com.example.androidcapstone.view.fragments.WebViewFragment
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -19,15 +18,12 @@ import kotlinx.android.synthetic.main.nav_header.view.*
 
 class HomeActivity : AppCompatActivity() {
     //Toolbar on top with OWL name and logo, sometimes action buttons
-    //Some kind of horizontal navigation bar and changes between tabs
-    //Featured Content
     //Ad banner at the bottom
 
-    //Navigation menu on the left to choose overall information type
-
-    //News Fragment - news - videos - photos?
+    //News Fragment - news
     //League Fragment - teams - standings - rankings
     //Players Fragment - players - players stats - hall of fame
+
     //Tickets
     //Social Media
     //Merch Store - WebView or Browser Redirect
@@ -78,16 +74,19 @@ class HomeActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.nav_news -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, NewsFragment.newInstance()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, NewsFragment.newInstance()).addToBackStack("News").commit()
                     toolbar.title = "News"}
                 R.id.nav_teams -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, TeamsFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, TeamsFragment()).addToBackStack("Teams").commit()
                     toolbar.title = "Teams"}
                 R.id.nav_players -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, PlayersFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, PlayersFragment()).addToBackStack("Players").commit()
                     toolbar.title = "Players"}
                 R.id.nav_tickets -> {}
-                R.id.nav_store -> {}
+                R.id.nav_store -> {
+                    supportFragmentManager.beginTransaction().add(R.id.frame_FragmentContainer, WebViewFragment.newInstance("https://shop.overwatchleague.com")).addToBackStack("News").commit()
+                    toolbar.title = "Shop"
+                }
                 R.id.nav_share -> {}
                 R.id.nav_feedback -> {}
                 R.id.nav_logout -> {

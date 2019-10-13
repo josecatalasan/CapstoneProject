@@ -8,6 +8,8 @@ import com.example.androidcapstone.R
 import com.example.androidcapstone.model.responseclasses.newsposts.BlogsItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_news.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsListAdapter(var blogsList : List<BlogsItem?>) : RecyclerView.Adapter<NewsListAdapter.ViewHolder>(){
 
@@ -23,12 +25,24 @@ class NewsListAdapter(var blogsList : List<BlogsItem?>) : RecyclerView.Adapter<N
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+
         fun bind(blogsItem: BlogsItem?){
             Picasso.get().load("https:"+blogsItem?.thumbnail?.url).into(itemView.ivThumbnail)
             itemView.tvNewsTitle.text = blogsItem?.title
-            itemView.tvAuthor.text = "by ${blogsItem?.author}"
+            itemView.tvAuthor.text = String.format("by %s", blogsItem?.author)
             itemView.tvSummary.text = blogsItem?.summary
+
+            val date = blogsItem?.created
+            val sdf = SimpleDateFormat("MMM dd, yyyy", Locale.US)
+            itemView.tvDate.text = sdf.format(date)
+
+            itemView.setOnClickListener(this)
         }
+
+        override fun onClick(view : View?) {
+
+        }
+
     }
 }

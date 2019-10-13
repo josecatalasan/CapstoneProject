@@ -16,5 +16,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_item_news">News</string>
+    <string name="nav_item_teams">Teams</string>
+    <string name="nav_item_players">Players</string>
+    <string name="nav_item_logout">Log Out</string>
+    <string name="nav_header_desc">Overwatch League Logo</string>
 
 </resources>
