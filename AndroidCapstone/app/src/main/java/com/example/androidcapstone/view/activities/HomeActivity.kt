@@ -1,11 +1,18 @@
 package com.example.androidcapstone.view.activities
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.androidcapstone.R
+import com.example.androidcapstone.model.broadcastreceiver.HomeBroadcastReceiver
 import com.example.androidcapstone.view.fragments.*
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
@@ -14,13 +21,12 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
 class HomeActivity : AppCompatActivity() {
-    //Toolbar on top with OWL name and logo, sometimes action buttons
+    //Toolbar on top with OWL name and logo
     //Ad banner at the bottom
 
-    //League Fragment - teams - standings - rankings
+    //League Fragment - teams - rankings
     //Players Fragment - players - players stats - hall of fame
 
-    //Social Media
     //FeedbackFragment - simple form to an RTD
     //Settings - notification preferences, permission settings, privacy policy, version
     //Content Provider
@@ -31,10 +37,15 @@ class HomeActivity : AppCompatActivity() {
     //Flavors
 
     private val firebaseAuth : FirebaseAuth = FirebaseAuth.getInstance()
+    lateinit var homeBroadcastReceiver: HomeBroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            initPushNotificationChannel()
+        }
 
         if(savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.frame_FragmentContainer, NewsFragment.newInstance()).commit()
@@ -42,6 +53,15 @@ class HomeActivity : AppCompatActivity() {
         }
         setSupportActionBar(toolbar)
         setupNavView()
+
+        homeBroadcastReceiver = HomeBroadcastReceiver()
+    }
+
+    override fun onStart() {
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+        registerReceiver(homeBroadcastReceiver, intentFilter)
+        super.onStart()
     }
 
     override fun onStop() {
@@ -49,6 +69,7 @@ class HomeActivity : AppCompatActivity() {
         if(user!!.isAnonymous){
             user.delete()
         }
+        unregisterReceiver(homeBroadcastReceiver)
         super.onStop()
     }
 
@@ -111,6 +132,12 @@ class HomeActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    fun initPushNotificationChannel(){
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val channel = NotificationChannel("channel", "messages", NotificationManager.IMPORTANCE_HIGH)
+        manager.createNotificationChannel(channel)
     }
 }
