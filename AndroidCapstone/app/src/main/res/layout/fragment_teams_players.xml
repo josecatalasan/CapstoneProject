@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/rv_item_background"
+    tools:context=".view.fragments.TeamsPlayersFragment">
+
+    <TextView
+        android:id="@+id/tvTeamPlayersName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:typeface="serif"
+        android:layout_marginTop="6dp"/>
+
+    <TextView
+        android:id="@+id/tvTeamPlayersDivision"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:typeface="serif"
+        android:layout_marginBottom="6dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTeamPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/quartz"/>
+
+</LinearLayout>

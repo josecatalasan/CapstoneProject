@@ -1,9 +1,9 @@
 package com.example.androidcapstone.model.responseclasses.teams
 
-import javax.annotation.Generated
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-@Generated("com.robohorse.robopojogenerator")
 data class PlayersItem(
 
 	@field:SerializedName("number")
@@ -35,4 +35,43 @@ data class PlayersItem(
 
 	@field:SerializedName("handle")
 	val handle: String? = null
-)
+) : Parcelable {
+
+	constructor(parcel: Parcel) : this(
+		parcel.readString(),
+		parcel.readString(),
+		parcel.readString(),
+		parcel.readString(),
+		parcel.readString(),
+		null,
+		parcel.readString(),
+		parcel.readValue(Int::class.java.classLoader) as? Int,
+		null,
+		parcel.readString()
+	)
+
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		parcel.writeString(number)
+		parcel.writeString(role)
+		parcel.writeString(headshot)
+		parcel.writeString(homeLocation)
+		parcel.writeString(name)
+		parcel.writeString(fullName)
+		parcel.writeValue(id)
+		parcel.writeString(handle)
+	}
+
+	override fun describeContents(): Int {
+		return 0
+	}
+
+	companion object CREATOR : Parcelable.Creator<PlayersItem> {
+		override fun createFromParcel(parcel: Parcel): PlayersItem {
+			return PlayersItem(parcel)
+		}
+
+		override fun newArray(size: Int): Array<PlayersItem?> {
+			return arrayOfNulls(size)
+		}
+	}
+}

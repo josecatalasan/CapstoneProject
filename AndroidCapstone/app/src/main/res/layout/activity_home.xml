@@ -29,9 +29,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
+                android:layout_marginTop="4dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo_owl_small"
-                android:contentDescription="Overwatch League Logo" />
+                android:contentDescription="@string/description_toolbar_logo" />
 
         </androidx.appcompat.widget.Toolbar>
 

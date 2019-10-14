@@ -13,6 +13,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.rx_cache2.internal.RxCache
 import io.victoralbertos.jolyglot.GsonSpeaker
+import java.util.*
+import java.util.Collections.sort
 
 class TeamsListViewModel : ViewModel() {
 
@@ -30,7 +32,11 @@ class TeamsListViewModel : ViewModel() {
             .subscribeOn(Schedulers.io())
             .subscribe(object : Observer<TeamsResponse> {
                 private lateinit var response : TeamsResponse
-                override fun onComplete() {teamsList.postValue(response.data)}
+                override fun onComplete() {
+                    sort(response.data as MutableList<DataItem?>) { p0, p1 -> p0?.name!!.toLowerCase(
+                        Locale.getDefault()).compareTo(p1?.name!!.toLowerCase(Locale.getDefault())) }
+                    teamsList.postValue(response.data)
+                }
 
                 override fun onSubscribe(d: Disposable) {}
 

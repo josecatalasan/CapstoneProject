@@ -37,5 +37,6 @@
     <string name="feedback_button_text">SEND FEEDBACK</string>
     <string name="share_text">SHARE</string>
     <string name="news_post_thumbnail_description">Thumbnail of news post</string>
+    <string name="description_toolbar_logo">Overwatch League Logo</string>
 
 </resources>
