@@ -2,6 +2,9 @@
     <string name="app_name">AndroidCapstone</string>
     <string name="facebook_app_id">499584537506888</string>
     <string name="fb_login_protocol_scheme">fb499584537506888</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_app_id">ca-app-pub-9870987900742302~7422383191</string>
+
     <string name="user_email_hint">Email Address</string>
     <string name="user_password_hint">Password</string>
     <string name="log_in_button_text">LOG IN</string>
@@ -16,6 +19,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="nav_item_news">News</string>
     <string name="nav_item_teams">Teams</string>
     <string name="nav_item_players">Players</string>
