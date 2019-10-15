@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.example.androidcapstone.view.activities.HomeActivity
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.premium.activity_home.*
 
 class HomeBroadcastReceiver : BroadcastReceiver() {
 

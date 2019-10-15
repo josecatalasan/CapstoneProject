@@ -15,13 +15,10 @@ import com.example.androidcapstone.R
 import com.example.androidcapstone.model.broadcastreceiver.HomeBroadcastReceiver
 import com.example.androidcapstone.view.fragments.*
 import com.facebook.login.LoginManager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.MobileAds
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header.view.*
+import kotlinx.android.synthetic.premium.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -42,7 +39,6 @@ class HomeActivity : AppCompatActivity() {
         }
         setSupportActionBar(toolbar)
         setupNavView()
-        setupAds()
 
         homeBroadcastReceiver = HomeBroadcastReceiver()
     }
@@ -68,12 +64,6 @@ class HomeActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
         else
             super.onBackPressed()
-    }
-
-    private fun setupAds(){
-        MobileAds.initialize(this)
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
     }
 
     private fun setupNavView(){
