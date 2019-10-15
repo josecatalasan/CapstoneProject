@@ -4,14 +4,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.androidcapstone.view.fragments.TeamsListFragment
-import com.example.androidcapstone.view.fragments.TeamsStandingsFragment
+import com.example.androidcapstone.view.fragments.TeamsRankingsFragment
 
 class TeamsPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager, 	BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
     override fun getItem(position: Int): Fragment {
         when(position){
             0 -> {return TeamsListFragment()}
-            1 -> {return TeamsStandingsFragment()}
+            1 -> {return TeamsRankingsFragment()}
         }
         return Fragment() // should never reach here
     }

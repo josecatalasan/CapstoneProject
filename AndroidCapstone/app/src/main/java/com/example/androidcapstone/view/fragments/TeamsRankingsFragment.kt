@@ -12,14 +12,14 @@ import com.example.androidcapstone.R
 /**
  * A simple [Fragment] subclass.
  */
-class TeamsStandingsFragment : Fragment() {
+class TeamsRankingsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_teams_standings, container, false)
+        return inflater.inflate(R.layout.fragment_teams_rankings, container, false)
     }
 
 

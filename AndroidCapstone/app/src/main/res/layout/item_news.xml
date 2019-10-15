@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    android:background="@drawable/rv_item_background">
+    android:background="@drawable/border_bright_yellow">
 
     <ImageView
         android:id="@+id/ivThumbnail"

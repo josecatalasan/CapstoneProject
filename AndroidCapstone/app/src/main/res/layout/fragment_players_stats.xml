@@ -11,15 +11,25 @@
             type="com.example.androidcapstone.viewmodel.PlayersStatsViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinnerSortBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:padding="2dp"
+            android:background="@drawable/border_bright_yellow"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPlayersStats"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@color/quartz"/>
 
-    </FrameLayout>
+    </LinearLayout>
 
 </layout>

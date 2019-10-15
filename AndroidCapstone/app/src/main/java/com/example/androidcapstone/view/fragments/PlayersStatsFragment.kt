@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.androidcapstone.R
 import com.example.androidcapstone.databinding.FragmentPlayersStatsBinding
@@ -31,13 +34,30 @@ class PlayersStatsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rvPlayersStats.layoutManager = LinearLayoutManager(context)
-        rvPlayersStats.adapter = adapter
+        setupSpinner()
 
+        rvPlayersStats.layoutManager = GridLayoutManager(context, 2)
+        rvPlayersStats.adapter = adapter
         viewModel.playerStatsList.observe(this, Observer<List<PlayerStats?>> { t -> adapter.onListUpdate(t) })
         viewModel.getPlayerStats(context!!)
 
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun setupSpinner(){
+        val sortAdapter = ArrayAdapter<String>(context!!, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.sortBy))
+        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSortBy.adapter = sortAdapter
+        spinnerSortBy.onItemSelectedListener
+        spinnerSortBy.onItemSelectedListener = MyOnItemSelectedListener()
+    }
+
+    private inner class MyOnItemSelectedListener : OnItemSelectedListener{
+        override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+        override fun onItemSelected(adapterView : AdapterView<*>?, view: View?, position: Int, rowId: Long) {
+            val category = adapterView?.getItemAtPosition(position).toString()
+            adapter.sortBy(category)
+        }
+    }
 }

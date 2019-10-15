@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sortBy">
+        <item>Name</item>
+        <item>Eliminations</item>
+        <item>Final Blows</item>
+        <item>Hero Damage</item>
+        <item>Healing</item>
+        <item>Ultimates</item>
+        <item>Time Played</item>
+        <item>Deaths</item>
+    </string-array>
+</resources>

@@ -3,63 +3,73 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_gravity="center"
+    android:padding="8dp"
+    android:background="@drawable/border_bright_yellow">
 
     <TextView
         android:id="@+id/tvPlayerStatsName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvPlayerStatsRole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvPlayerStatsTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsEliminations"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsFinalBlows"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsHeroDamage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsHealing"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsUltimates"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsTimePlayed"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/tvPlayerStatsDeaths"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:typeface="monospace"/>
 
 </LinearLayout>
