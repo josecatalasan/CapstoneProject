@@ -23,9 +23,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     dataBinding {
         enabled = true
+    }
+
+    flavorDimensions "monetization"
+
+    productFlavors{
+        free{
+            dimension "monetization"
+        }
+        premium{
+            dimension "monetization"
+        }
     }
 }
 

@@ -24,19 +24,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
 class HomeActivity : AppCompatActivity() {
-    //Toolbar on top with OWL name and logo
-    //Ad banner at the bottom
-
-    //League Fragment - teams - rankings
-    //Players Fragment - players - players stats - hall of fame
-
-    //Settings - notification preferences, permission settings, privacy policy, version
-    //Content Provider
-    //Broadcast Receiver
-    //Service
-    //RxCache
-    //Tests
-    //Flavors
 
     private val firebaseAuth : FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var homeBroadcastReceiver: HomeBroadcastReceiver
